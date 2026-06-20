@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntimeaditi",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
