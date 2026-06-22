@@ -49,7 +49,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_onprem1",
+						"referenceName": "ds_onprem_src_param",
 						"type": "DatasetReference"
 					}
 				],
