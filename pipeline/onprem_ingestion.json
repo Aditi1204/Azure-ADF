@@ -59,7 +59,10 @@
 				"outputs": [
 					{
 						"referenceName": "ds_onprem_csvfile",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"p_filename": "b"
+						}
 					}
 				]
 			}
