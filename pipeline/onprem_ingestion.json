@@ -75,7 +75,18 @@
 		],
 		"parameters": {
 			"files": {
-				"type": "array"
+				"type": "array",
+				"defaultValue": [
+					{
+						"file_name": "DimPassenger.csv"
+					},
+					{
+						"file_name": "DimAirline.csv"
+					},
+					{
+						"file_name": "DimFlight.csv"
+					}
+				]
 			}
 		},
 		"annotations": [],
