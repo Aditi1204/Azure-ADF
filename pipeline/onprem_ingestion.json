@@ -65,8 +65,19 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "ForEachFile",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": []
 			}
 		],
+		"parameters": {
+			"files": {
+				"type": "array"
+			}
+		},
 		"annotations": [],
 		"lastPublishTime": "2026-06-20T14:52:30Z"
 	},
