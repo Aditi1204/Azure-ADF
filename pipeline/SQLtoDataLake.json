@@ -97,7 +97,7 @@
 						"referenceName": "ds_lookup",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
