@@ -31,7 +31,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select * from dbo.factbookings\nwhere booking_date > '@{activity('lastload').output.lastload}'\nAND\nbooking_date <='@{activity('latestload').output.firstRow}'",
+							"value": "select * from dbo.factbookings\nwhere booking_date > '@{activity('lastload').output.lastload}'\nAND\nbooking_date <='@{activity('latestload').output.firstRow.latestload}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -165,11 +165,26 @@
 							"type": "JsonReadSettings"
 						}
 					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "ds_emptyjson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_lookup",
 						"type": "DatasetReference"
 					}
 				]
