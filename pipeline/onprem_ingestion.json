@@ -64,7 +64,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"p_file_name": {
-											"value": "@item().filename",
+											"value": "@item().file_name",
 											"type": "Expression"
 										}
 									}
