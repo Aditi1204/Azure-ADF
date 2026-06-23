@@ -25,7 +25,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select * from dbo.factbookings\nwhere booking_date > '@{activity('lastload').output.firstRow.lastload}'",
+							"value": "select * from dbo.factbookings\nwhere booking_date > '@{activity('lastload').output.lastload}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
