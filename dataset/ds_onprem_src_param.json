@@ -18,7 +18,8 @@
 				"fileName": {
 					"value": "@dataset().p_file_name",
 					"type": "Expression"
-				}
+				},
+				"folderPath": "AditiFiles"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
