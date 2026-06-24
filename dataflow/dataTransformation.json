@@ -1,0 +1,24 @@
+{
+	"name": "dataTransformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_silver_source_onprem",
+						"type": "DatasetReference"
+					},
+					"name": "Onpremsource"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Onpremsource"
+			]
+		}
+	}
+}
