@@ -15,7 +15,13 @@
 						"referenceName": "onprem_ingestion",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"files": {
+							"value": "@pipeline().parameters.files",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
