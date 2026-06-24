@@ -1,0 +1,40 @@
+{
+	"name": "Parentpipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "ExecuteOnprem",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "onprem_ingestion",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"parameters": {
+			"files": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"file_name": "DimPassenger.csv"
+					},
+					{
+						"file_name": "DimAirline.csv"
+					},
+					{
+						"file_name": "DimFlight.csv"
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}
