@@ -56,6 +56,9 @@
 				},
 				{
 					"name": "derivedColgenderflagf"
+				},
+				{
+					"name": "filterage"
 				}
 			],
 			"scriptLines": [
@@ -112,7 +115,8 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"select1 derive(gender_flag = regexReplace(gender_flag,\"M\",\"Male\")) ~> derivedgenderflag",
-				"derivedgenderflag derive(gender_flag = regexReplace(gender_flag,\"F\",\"Female\")) ~> derivedColgenderflagf"
+				"derivedgenderflag derive(gender_flag = regexReplace(gender_flag,\"F\",\"Female\")) ~> derivedColgenderflagf",
+				"derivedColgenderflagf filter(age > 25 ) ~> filterage"
 			]
 		}
 	}
