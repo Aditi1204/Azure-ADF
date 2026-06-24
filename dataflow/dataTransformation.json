@@ -9,7 +9,14 @@
 						"referenceName": "ds_silver_source_onprem",
 						"type": "DatasetReference"
 					},
-					"name": "Onpremsource"
+					"name": "DimAirline"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_silver_DimFlight",
+						"type": "DatasetReference"
+					},
+					"name": "DimFlight"
 				}
 			],
 			"sinks": [],
@@ -17,7 +24,10 @@
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> Onpremsource"
+				"     ignoreNoFilesFound: false) ~> DimAirline",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> DimFlight"
 			]
 		}
 	}
