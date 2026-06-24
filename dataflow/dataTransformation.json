@@ -17,6 +17,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "DimFlight"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_silver_DimPassenger",
+						"type": "DatasetReference"
+					},
+					"name": "DimPassenger"
 				}
 			],
 			"sinks": [],
@@ -27,7 +34,10 @@
 				"     ignoreNoFilesFound: false) ~> DimAirline",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> DimFlight"
+				"     ignoreNoFilesFound: false) ~> DimFlight",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> DimPassenger"
 			]
 		}
 	}
