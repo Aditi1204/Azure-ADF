@@ -50,6 +50,12 @@
 				},
 				{
 					"name": "select1"
+				},
+				{
+					"name": "derivedgenderflag"
+				},
+				{
+					"name": "derivedColgenderflagf"
 				}
 			],
 			"scriptLines": [
@@ -104,7 +110,9 @@
 				"          country",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1"
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 derive(gender_flag = regexReplace(gender_flag,\"M\",\"Male\")) ~> derivedgenderflag",
+				"derivedgenderflag derive(gender_flag = regexReplace(gender_flag,\"F\",\"Female\")) ~> derivedColgenderflagf"
 			]
 		}
 	}
