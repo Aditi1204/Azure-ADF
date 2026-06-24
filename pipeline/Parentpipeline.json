@@ -93,7 +93,7 @@
 					"method": "POST",
 					"url": "https://adfprojectlogicaditi-epc2hngdgqeqezha.canadacentral-01.azurewebsites.net:443/api/Alerts/triggers/When_an_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=gyywbP13BCrBUTNoH_aYPpSEfGYka6y9pkxqW1PG7Ug",
 					"body": {
-						"value": "{\n    \"pipeline_name\":\"@{pipeline().Pipeline}\",\n    \"run_id\":\"@{pipeline().RunId}\",\n    \"status\":\"@{activity('ExecuteIncrementalIngestion').Status}\",\n    \"error\":\"@{activity('ExecuteIncrementalIngestion').output.error}\"\n\n}",
+						"value": "{\n  \"pipeline_name\": \"@{pipeline().Pipeline}\",\n  \"run_id\": \"@{pipeline().RunId}\",\n  \"status\": \"@{activity('ExecuteIncrementalIngestion').Satus}\",\n  \"error\": \"@{if(equals(activity('ExecuteIncrementalIngestion').output.Status,'Failed'), string(activity('ExecuteIncrementalIngestion').output.error), 'No error')}\"\n}",
 						"type": "Expression"
 					}
 				}
