@@ -59,6 +59,9 @@
 				},
 				{
 					"name": "filterage"
+				},
+				{
+					"name": "derivedColname"
 				}
 			],
 			"scriptLines": [
@@ -116,7 +119,8 @@
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"select1 derive(gender_flag = regexReplace(gender_flag,\"M\",\"Male\")) ~> derivedgenderflag",
 				"derivedgenderflag derive(gender_flag = regexReplace(gender_flag,\"F\",\"Female\")) ~> derivedColgenderflagf",
-				"derivedColgenderflagf filter(age > 25 ) ~> filterage"
+				"derivedColgenderflagf filter(age > 25 ) ~> filterage",
+				"filterage derive(first_name = split(full_name,\" \")[1]) ~> derivedColname"
 			]
 		}
 	}
