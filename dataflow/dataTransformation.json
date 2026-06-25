@@ -47,6 +47,13 @@
 						"type": "LinkedServiceReference"
 					},
 					"name": "sinkairline"
+				},
+				{
+					"linkedService": {
+						"referenceName": "ls_datalake",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sinkflight"
 				}
 			],
 			"transformations": [
@@ -82,6 +89,9 @@
 				},
 				{
 					"name": "alterRowFlight"
+				},
+				{
+					"name": "alterRowPassenger"
 				}
 			],
 			"scriptLines": [
@@ -166,6 +176,7 @@
 				"DimAirport derive(airport_name = upper(airport_name)) ~> derivedColCaps",
 				"derivedColcountry alterRow(upsertIf(1==1)) ~> alterRowAirline",
 				"selectcol alterRow(upsertIf(1==1)) ~> alterRowFlight",
+				"derivedColname alterRow(upsertIf(1==1)) ~> alterRowPassenger",
 				"alterRowAirline sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'delta',",
@@ -184,7 +195,26 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkairline"
+				"     skipDuplicateMapOutputs: true) ~> sinkairline",
+				"alterRowFlight sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delta',",
+				"     fileSystem: 'silver',",
+				"     folderPath: 'DimFlight',",
+				"     mergeSchema: false,",
+				"     autoCompact: false,",
+				"     optimizedWrite: false,",
+				"     vacuum: 0,",
+				"     deletable: false,",
+				"     insertable: false,",
+				"     updateable: false,",
+				"     upsertable: true,",
+				"     keys:['flight_id'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkflight"
 			]
 		}
 	}
