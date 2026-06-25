@@ -53,6 +53,9 @@
 				},
 				{
 					"name": "Rank"
+				},
+				{
+					"name": "Top"
 				}
 			],
 			"scriptLines": [
@@ -127,7 +130,8 @@
 				"selectcols aggregate(groupBy(airline_name),",
 				"     Total_Sales = sum(ticket_cost)) ~> aggregateairline",
 				"aggregateairline window(desc(Total_Sales, true),",
-				"     Total_Sales = denseRank()) ~> Rank"
+				"     Rank = denseRank()) ~> Rank",
+				"Rank filter(Rank<6 ) ~> Top"
 			]
 		}
 	}
