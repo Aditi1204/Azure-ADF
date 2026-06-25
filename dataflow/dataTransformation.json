@@ -65,6 +65,12 @@
 				},
 				{
 					"name": "castcost"
+				},
+				{
+					"name": "derivedColCaps"
+				},
+				{
+					"name": "alterRowAirline"
 				}
 			],
 			"scriptLines": [
@@ -111,7 +117,13 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> FactBookings",
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          airport_id as short,",
+				"          airport_name as string,",
+				"          city as string,",
+				"          country as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> DimAirport",
@@ -139,7 +151,9 @@
 				"FactBookings cast(output(",
 				"          ticket_cost as integer",
 				"     ),",
-				"     errors: true) ~> castcost"
+				"     errors: true) ~> castcost",
+				"DimAirport derive(airport_name = upper(airport_name)) ~> derivedColCaps",
+				"derivedColcountry alterRow(upsertIf(1==1)) ~> alterRowAirline"
 			]
 		}
 	}
