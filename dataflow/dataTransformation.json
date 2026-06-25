@@ -62,6 +62,9 @@
 				},
 				{
 					"name": "derivedColname"
+				},
+				{
+					"name": "castcost"
 				}
 			],
 			"scriptLines": [
@@ -92,7 +95,19 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> DimPassenger",
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          booking_id as integer,",
+				"          passenger_id as integer,",
+				"          flight_id as integer,",
+				"          airline_id as integer,",
+				"          origin_airport_id as integer,",
+				"          destination_airport_id as integer,",
+				"          booking_date as date,",
+				"          ticket_cost as decimal(10,2),",
+				"          flight_duration_mins as integer,",
+				"          checkin_status as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> FactBookings",
@@ -119,8 +134,12 @@
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"select1 derive(gender_flag = regexReplace(gender_flag,\"M\",\"Male\")) ~> derivedgenderflag",
 				"derivedgenderflag derive(gender_flag = regexReplace(gender_flag,\"F\",\"Female\")) ~> derivedColgenderflagf",
-				"derivedColgenderflagf filter(age > 25 ) ~> filterage",
-				"filterage derive(first_name = split(full_name,\" \")[1]) ~> derivedColname"
+				"derivedColgenderflagf filter(age > 25) ~> filterage",
+				"filterage derive(first_name = split(full_name,\" \")[1]) ~> derivedColname",
+				"FactBookings cast(output(",
+				"          ticket_cost as integer",
+				"     ),",
+				"     errors: true) ~> castcost"
 			]
 		}
 	}
