@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "Data Serving",
+						"referenceName": "dataTransformation",
 						"type": "DataFlowReference"
 					},
 					"compute": {
