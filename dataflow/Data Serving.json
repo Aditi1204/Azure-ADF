@@ -47,6 +47,9 @@
 				},
 				{
 					"name": "selectcols"
+				},
+				{
+					"name": "aggregateairline"
 				}
 			],
 			"scriptLines": [
@@ -117,7 +120,9 @@
 				"          country",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> selectcols"
+				"     skipDuplicateMapOutputs: false) ~> selectcols",
+				"selectcols aggregate(groupBy(airline_name),",
+				"     Total_Sales = sum(ticket_cost)) ~> aggregateairline"
 			]
 		}
 	}
