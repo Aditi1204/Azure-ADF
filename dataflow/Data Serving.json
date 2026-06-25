@@ -46,7 +46,11 @@
 						"referenceName": "ls_datalake",
 						"type": "LinkedServiceReference"
 					},
-					"name": "sinkGold"
+					"name": "sinkGold",
+					"rejectedDataLinkedService": {
+						"referenceName": "ls_datalake",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [
