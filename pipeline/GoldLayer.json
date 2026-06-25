@@ -1,9 +1,9 @@
 {
-	"name": "SilverLayer",
+	"name": "GoldLayer",
 	"properties": {
 		"activities": [
 			{
-				"name": "SilverDataflow",
+				"name": "GoldDataflow",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataTransformation",
+						"referenceName": "Data Serving",
 						"type": "DataFlowReference"
 					},
 					"compute": {
