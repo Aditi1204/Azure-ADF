@@ -50,6 +50,9 @@
 				},
 				{
 					"name": "aggregateairline"
+				},
+				{
+					"name": "Rank"
 				}
 			],
 			"scriptLines": [
@@ -122,7 +125,9 @@
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: false) ~> selectcols",
 				"selectcols aggregate(groupBy(airline_name),",
-				"     Total_Sales = sum(ticket_cost)) ~> aggregateairline"
+				"     Total_Sales = sum(ticket_cost)) ~> aggregateairline",
+				"aggregateairline window(desc(Total_Sales, true),",
+				"     Total_Sales = denseRank()) ~> Rank"
 			]
 		}
 	}
